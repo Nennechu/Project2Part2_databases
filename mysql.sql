@@ -35,7 +35,7 @@ INSERT INTO LIBRARY_BRANCH VALUES(2, 'West Branch', '456 West St, Arizona, AR 70
 INSERT INTO LIBRARY_BRANCH VALUES(3, 'East Branch', '789 East St, New Jersy, NY 32032');
 
 CREATE TABLE BORROWER (
-    Card_No INT NOT NULL,
+    Card_No INT,
     Name VARCHAR(15) NOT NULL,
     Address VARCHAR(40) NOT NULL,
     Phone VARCHAR(10) NOT NULL,
@@ -97,7 +97,7 @@ INSERT INTO BOOK VALUES(21, 'A Tale of Two Cities', 'Chapman and Hall');
 CREATE TABLE BOOK_LOANS (
     Book_Id INT NOT NULL,
     Branch_Id INT NOT NULL,
-    Card_No INT NOT NULL,
+    Card_No INT,
     Date_Out DATE NOT NULL,
     Due_Date DATE NOT NULL,
     Returned_Date DATE,
@@ -188,3 +188,24 @@ INSERT INTO BOOK_AUTHORS VALUES(18, 'Dan Brown');
 INSERT INTO BOOK_AUTHORS VALUES(19, 'Mark Twain');
 INSERT INTO BOOK_AUTHORS VALUES(20, 'Mark Twain');
 INSERT INTO BOOK_AUTHORS VALUES(21, 'Charles Dickens');
+
+-- Query 1
+
+-- Query 2
+
+-- Query 3
+
+-- Query 4
+
+-- Query 5
+
+-- Query 6
+
+-- Query 7
+
+-- Query 8
+
+-- Query 9
+
+-- Query 10
+
