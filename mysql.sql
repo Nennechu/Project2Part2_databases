@@ -198,13 +198,21 @@ INSERT INTO BOOK_AUTHORS VALUES(20, 'Mark Twain');
 INSERT INTO BOOK_AUTHORS VALUES(21, 'Charles Dickens');
 
 -- Query 1
-
+INSERT INTO BORROWER VALUES(NULL, 'Tien Hoang', '701 S Nedderman Dr, Arlington, TX 76019', '682-407-9912');
 -- Query 2
-
+UPDATE BORROWER
+SET Phone='837-721-8965'
+WHERE Name='Tien Hoang';
 -- Query 3
-
--- Query 4
-
+UPDATE BOOK_COPIES
+SET No_Of_Copies=No_Of_Copies+1
+WHERE Branch_Id=3;
+-- Query 4-a
+INSERT INTO BOOK VALUES(22, 'Harry Potter and the Sorcerer''s Stone', 'Oxford Publisheing');
+INSERT INTO BOOK_AUTHORS VALUES (22, 'J.K. Rowling');
+-- Query 4-b
+INSERT INTO LIBRARY_BRANCH VALUES(4, 'North Branch', '456 NW, Irving, TX 76100');
+INSERT INTO LIBRARY_BRANCH VALUES(5, 'UTA Branch', '123 Cooper St, Arlington TX 76101');
 -- Query 5
 
 -- Query 6
