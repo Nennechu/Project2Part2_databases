@@ -222,7 +222,9 @@ WHERE bw.Card_No=bl.Card_No AND bl.Returned_Date IS NULL;
 -- Query 7
 
 -- Query 8
-
+SELECT B.Title, Cast((JULIANDAY(BL.Due_Date) - JULIANDAY(BL.Date_Out)) AS Integer)
+FROM BOOK B, BOOK_LOANS BL
+WHERE B.Book_Id = BL.Book_Id;
 -- Query 9
 
 -- Query 10
