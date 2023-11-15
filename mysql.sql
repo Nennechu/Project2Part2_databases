@@ -214,7 +214,9 @@ INSERT INTO BOOK_AUTHORS VALUES (22, 'J.K. Rowling');
 INSERT INTO LIBRARY_BRANCH VALUES(4, 'North Branch', '456 NW, Irving, TX 76100');
 INSERT INTO LIBRARY_BRANCH VALUES(5, 'UTA Branch', '123 Cooper St, Arlington TX 76101');
 -- Query 5
-
+SELECT B.Title, L.Branch_Name, Cast((JULIANDAY(BL.Returned_Date) - JULIANDAY(BL.Date_Out)) AS Integer)
+FROM BOOK B, LIBRARY_BRANCH L, BOOK_LOANS BL
+WHERE B.Book_Id = BL.Book_Id AND L.Branch_Id = BL.Branch_Id AND (BL.Date_Out BETWEEN '2022-03-05' AND '2022-03-23');
 -- Query 6
 SELECT bw.Name
 FROM BORROWER AS bw, BOOK_LOANS AS bl
