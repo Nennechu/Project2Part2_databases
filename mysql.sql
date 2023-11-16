@@ -214,7 +214,7 @@ INSERT INTO BOOK_AUTHORS VALUES (22, 'J.K. Rowling');
 INSERT INTO LIBRARY_BRANCH VALUES(4, 'North Branch', '456 NW, Irving, TX 76100');
 INSERT INTO LIBRARY_BRANCH VALUES(5, 'UTA Branch', '123 Cooper St, Arlington TX 76101');
 -- Query 5
-SELECT B.Title, L.Branch_Name, Cast((JULIANDAY(BL.Returned_Date) - JULIANDAY(BL.Date_Out)) AS Integer)
+SELECT B.Title, L.Branch_Name, Cast((JULIANDAY(BL.Returned_Date) - JULIANDAY(BL.Date_Out)) AS Integer) AS Days_Borrowed
 FROM BOOK B, LIBRARY_BRANCH L, BOOK_LOANS BL
 WHERE B.Book_Id = BL.Book_Id AND L.Branch_Id = BL.Branch_Id AND (BL.Date_Out BETWEEN '2022-03-05' AND '2022-03-23');
 -- Query 6
@@ -222,9 +222,18 @@ SELECT bw.Name
 FROM BORROWER AS bw, BOOK_LOANS AS bl
 WHERE bw.Card_No=bl.Card_No AND bl.Returned_Date IS NULL;
 -- Query 7
-
+SELECT lb.Branch_Name, COUNT(bl.Book_Id) AS Books_Borrowed,
+    CASE 
+        WHEN bl.Returned_Date <= bl.Due_Date THEN 'Returned'
+        WHEN bl.Returned_Date IS NULL THEN 'Still Borrowed'
+        WHEN bl.Returned_Date > bl.Due_Date THEN 'Late' 
+        ELSE NULL 
+    END AS Book_Status
+FROM LIBRARY_BRANCH AS lb 
+JOIN BOOK_LOANS AS bl ON lb.Branch_Id=bl.Branch_Id
+GROUP BY lb.Branch_Id, Book_Status;
 -- Query 8
-SELECT B.Title, Cast((JULIANDAY(BL.Due_Date) - JULIANDAY(BL.Date_Out)) AS Integer)
+SELECT B.Title, Cast((JULIANDAY(BL.Due_Date) - JULIANDAY(BL.Date_Out)) AS Integer) AS Max_Days_Borrowed
 FROM BOOK B, BOOK_LOANS BL
 WHERE B.Book_Id = BL.Book_Id;
 -- Query 9
